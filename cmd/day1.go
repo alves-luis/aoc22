@@ -22,7 +22,7 @@ var day1Cmd = &cobra.Command{
 	Long:  `Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Loading input...")
-		input := loadInput()
+		input := loadElfInput()
 		fmt.Println("Loading elfs...")
 		elfs, max := loadElfs(input)
 		sort.Sort(elfs)
@@ -48,7 +48,7 @@ func (e Elfs) Len() int           { return len(e) }
 func (e Elfs) Less(i, j int) bool { return e[i].TotalCalories > e[j].TotalCalories }
 func (e Elfs) Swap(i, j int)      { e[i], e[j] = e[j], e[i] }
 
-func loadInput() *[]int {
+func loadElfInput() *[]int {
 	file, err := os.Open("input/day1.txt")
 	defer file.Close()
 
